@@ -1,0 +1,45 @@
+\
+    ---
+    output: github_document
+    ---
+
+    # oecdr
+
+    초소형 OECD SDMX → CSV → tibble → DBI 적재 **R 패키지** 스타터 템플릿입니다.
+
+    ## 설치 (개발 버전)
+
+    ```r
+    # 로컬 설치 (folder setwd 후)
+    devtools::install()
+    ```
+
+    ## 예시: OECD SDMX REST → tibble → DB 적재
+
+    ```r
+    library(oecdr)
+
+    # 공식 구조를 따르는 예시 (데모)
+    df <- fetch_oecd_csv(
+      dataset = "OECD.SDD.STES,DSD_STES@DF_CLI",
+      key = ".M.LI...AA...H",
+      start_period = "2023-02"
+    )
+
+    # 로컬 SQLite에 저장
+    write_db(df, "oecd_cli_sample")
+
+    # 운영(Postgres) 환경변수(PGHOST, PGPORT, PGUSER, PGPASSWORD, PGDATABASE) 설정 후:
+    # con <- oecdr_connect("RPostgres")
+    # write_db(df, "oecd_cli_sample", con = con, overwrite = TRUE, append = FALSE)
+    # DBI::dbDisconnect(con)
+    ```
+
+    ## 개발자 빠른 시작
+
+    ```r
+    install.packages(c("devtools","testthat","tibble","DBI","RSQLite","RPostgres","readr","lintr","pkgdown"))
+    devtools::document()
+    devtools::check()
+    devtools::install()
+    ```

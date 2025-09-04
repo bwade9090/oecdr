@@ -1,0 +1,22 @@
+Package: oecdr
+Type: Package
+Title: Minimal OECD SDMX ETL Demo (R CSV + DBI)
+Version: 0.1.0
+Authors@R: person("Hyungbae", "Cho", email = "bwade9090@gmail.com", role = c("aut","cre"))
+Description: A minimal starter package that fetches OECD SDMX REST CSV responses and writes them to a database via DBI (SQLite by default, Postgres optional). Includes testthat tests, GitHub Actions CI, and a sample offline CSV.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    tibble,
+    DBI,
+    RSQLite,
+    RPostgres,
+    readr,
+    utils
+Suggests:
+    testthat (>= 3.0.0),
+    lintr,
+    pkgdown
+Config/testthat/edition: 3
