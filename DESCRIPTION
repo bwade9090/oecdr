@@ -1,7 +1,7 @@
 Package: oecdr
 Type: Package
 Title: Tools for the OECD SDMX REST API
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Hyungbae", "Cho", email = "bwade9090@gmail.com", role = c("aut","cre"))
 Description: Utilities for fetching OECD statistics from the SDMX REST API
     (<https://sdmx.oecd.org>), converting responses to tibbles, and persisting
@@ -24,6 +24,5 @@ Suggests:
     testthat (>= 3.0.0),
     lintr,
     pkgdown,
-    RPostgres,
-    httptest2
+    RPostgres
 Config/testthat/edition: 3
