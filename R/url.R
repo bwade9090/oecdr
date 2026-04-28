@@ -1,13 +1,22 @@
 #' Build OECD SDMX REST URL
 #'
-#' @param dataset 문자열. 예: "OECD.SDD.STES,DSD_STES@DF_CLI"
-#' @param key SDMX 키 경로. 모든 키는 "." 사용. 예: ".M.LI...AA...H"
-#' @param start_period "YYYY" 또는 "YYYY-MM" (옵션)
-#' @param end_period   "YYYY" 또는 "YYYY-MM" (옵션)
-#' @param labels TRUE면 라벨 포함 CSV, FALSE면 코드만 CSV
-#' @return URL 문자열
+#' @param dataset character(1). The SDMX dataset identifier, for example
+#'   `"OECD.SDD.STES,DSD_STES@DF_CLI"`.
+#' @param key character(1). The SDMX key path. Use `"."` to match all values
+#'   on every dimension. Example: `".M.LI...AA...H"`.
+#' @param start_period Optional `"YYYY"` or `"YYYY-MM"` start of the time
+#'   range. `NULL` (default) omits the filter.
+#' @param end_period Optional `"YYYY"` or `"YYYY-MM"` end of the time range.
+#'   `NULL` (default) omits the filter.
+#' @param labels If `TRUE` (default), the URL requests CSV with labels
+#'   (`csvfilewithlabels`); if `FALSE`, codes only (`csv`).
+#' @return A URL character string.
 #' @examples
-#' build_oecd_url("OECD.SDD.STES,DSD_STES@DF_CLI", ".M.LI...AA...H", start_period="2023-02")
+#' build_oecd_url(
+#'   dataset      = "OECD.SDD.STES,DSD_STES@DF_CLI",
+#'   key          = ".M.LI...AA...H",
+#'   start_period = "2023-02"
+#' )
 #' @export
 build_oecd_url <- function(dataset, key=".", start_period=NULL, end_period=NULL, labels=TRUE) {
   stopifnot(is.character(dataset), length(dataset) == 1)

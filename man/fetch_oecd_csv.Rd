@@ -15,15 +15,20 @@ fetch_oecd_csv(
 )
 }
 \arguments{
-\item{dataset}{문자열. 예: "OECD.SDD.STES,DSD_STES@DF_CLI"}
+\item{dataset}{character(1). The SDMX dataset identifier, for example
+\code{"OECD.SDD.STES,DSD_STES@DF_CLI"}.}
 
-\item{key}{SDMX 키 경로. 모든 키는 "." 사용. 예: ".M.LI...AA...H"}
+\item{key}{character(1). The SDMX key path. Use \code{"."} to match all values
+on every dimension. Example: \code{".M.LI...AA...H"}.}
 
-\item{start_period}{"YYYY" 또는 "YYYY-MM" (옵션)}
+\item{start_period}{Optional \code{"YYYY"} or \code{"YYYY-MM"} start of the time
+range. \code{NULL} (default) omits the filter.}
 
-\item{end_period}{"YYYY" 또는 "YYYY-MM" (옵션)}
+\item{end_period}{Optional \code{"YYYY"} or \code{"YYYY-MM"} end of the time range.
+\code{NULL} (default) omits the filter.}
 
-\item{labels}{TRUE면 라벨 포함 CSV, FALSE면 코드만 CSV}
+\item{labels}{If \code{TRUE} (default), the URL requests CSV with labels
+(\code{csvfilewithlabels}); if \code{FALSE}, codes only (\code{csv}).}
 
 \item{timeout}{HTTP request timeout in seconds. Forwarded to
 \code{\link[httr2:req_timeout]{httr2::req_timeout()}}. Default 30.}
