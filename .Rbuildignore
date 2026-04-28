@@ -7,3 +7,6 @@
 ^_pkgdown\.yml$
 ^renv$
 ^renv\.lock$
+^\.lintr$
+^LICENSE\.md$
+^RUNME\.R$
