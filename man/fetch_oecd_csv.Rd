@@ -2,14 +2,16 @@
 % Please edit documentation in R/fetch.R
 \name{fetch_oecd_csv}
 \alias{fetch_oecd_csv}
-\title{Fetch OECD data (CSV → tibble)}
+\title{Fetch OECD data via the SDMX REST API}
 \usage{
 fetch_oecd_csv(
   dataset,
   key = ".",
   start_period = NULL,
   end_period = NULL,
-  labels = TRUE
+  labels = TRUE,
+  timeout = 30,
+  required_cols = NULL
 )
 }
 \arguments{
@@ -22,10 +24,33 @@ fetch_oecd_csv(
 \item{end_period}{"YYYY" 또는 "YYYY-MM" (옵션)}
 
 \item{labels}{TRUE면 라벨 포함 CSV, FALSE면 코드만 CSV}
+
+\item{timeout}{HTTP request timeout in seconds. Forwarded to
+\code{\link[httr2:req_timeout]{httr2::req_timeout()}}. Default 30.}
+
+\item{required_cols}{Optional character vector of column names that must
+be present in the parsed response. If \code{NULL} (default) the column-name
+check is skipped. Supplied so callers can validate dataset-specific
+schemas without \code{oecdr} hard-coding any column set.}
 }
 \value{
-tibble::tibble()
+A \code{\link[tibble:tibble]{tibble::tibble()}} of the OECD response.
 }
 \description{
-Fetch OECD data (CSV → tibble)
+Builds the SDMX REST URL for the given \code{dataset} and \code{key}, performs an
+HTTP GET with \code{\link[httr2:req_perform]{httr2::req_perform()}}, parses the CSV body with
+\code{\link[readr:read_delim]{readr::read_csv()}}, and returns a \code{\link[tibble:tibble]{tibble::tibble()}}. Raises informative
+errors if the response body is empty, parses to zero rows or columns, or
+omits any columns named in \code{required_cols}. HTTP 4xx and 5xx responses
+surface as classed \code{httr2} errors.
+}
+\examples{
+\dontrun{
+fetch_oecd_csv(
+  dataset       = "OECD.SDD.STES,DSD_STES@DF_CLI",
+  key           = ".M.LI...AA...H",
+  start_period  = "2023-02",
+  required_cols = c("TIME_PERIOD", "OBS_VALUE")
+)
+}
 }

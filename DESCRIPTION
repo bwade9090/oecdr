@@ -18,11 +18,12 @@ Imports:
     tibble,
     DBI,
     RSQLite,
-    readr,
-    utils
+    httr2,
+    readr
 Suggests:
     testthat (>= 3.0.0),
     lintr,
     pkgdown,
-    RPostgres
+    RPostgres,
+    httptest2
 Config/testthat/edition: 3
