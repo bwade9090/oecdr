@@ -1,18 +1,18 @@
 #' Get a DBI connection from env (Postgres) or fallback to SQLite
 #' @param drv "RPostgres" or "RSQLite"
 #' @export
-oecdr_connect <- function(drv = c("RSQLite","RPostgres")) {
+oecdr_connect <- function(drv = c("RSQLite", "RPostgres")) {
   drv <- match.arg(drv)
   if (drv == "RPostgres") {
     if (!requireNamespace("RPostgres", quietly = TRUE)) stop("Install RPostgres")
     con <- DBI::dbConnect(
       RPostgres::Postgres(),
-      host = Sys.getenv("PGHOST","localhost"),
-      port = as.integer(Sys.getenv("PGPORT","5432")),
-      user = Sys.getenv("PGUSER","postgres"),
-      password = Sys.getenv("PGPASSWORD",""),
-      dbname = Sys.getenv("PGDATABASE","postgres"),
-      sslmode = Sys.getenv("PGSSLMODE","prefer")
+      host = Sys.getenv("PGHOST", "localhost"),
+      port = as.integer(Sys.getenv("PGPORT", "5432")),
+      user = Sys.getenv("PGUSER", "postgres"),
+      password = Sys.getenv("PGPASSWORD", ""),
+      dbname = Sys.getenv("PGDATABASE", "postgres"),
+      sslmode = Sys.getenv("PGSSLMODE", "prefer")
     )
   } else {
     if (!requireNamespace("RSQLite", quietly = TRUE)) stop("Install RSQLite")

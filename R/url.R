@@ -18,7 +18,7 @@
 #'   start_period = "2023-02"
 #' )
 #' @export
-build_oecd_url <- function(dataset, key=".", start_period=NULL, end_period=NULL, labels=TRUE) {
+build_oecd_url <- function(dataset, key = ".", start_period = NULL, end_period = NULL, labels = TRUE) {
   stopifnot(is.character(dataset), length(dataset) == 1)
   stopifnot(is.character(key), length(key) == 1)
   base <- "https://sdmx.oecd.org/public/rest/data"
@@ -32,6 +32,6 @@ build_oecd_url <- function(dataset, key=".", start_period=NULL, end_period=NULL,
   if (!is.null(start_period)) qs$startPeriod <- start_period
   if (!is.null(end_period))   qs$endPeriod   <- end_period
 
-  q <- paste0(names(qs), "=", unlist(qs), collapse="&")
+  q <- paste0(names(qs), "=", unlist(qs), collapse = "&")
   paste0(path, "?", q)
 }
