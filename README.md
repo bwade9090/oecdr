@@ -8,6 +8,7 @@
 [![R-CMD-check](https://github.com/bwade9090/oecdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/bwade9090/oecdr/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/bwade9090/oecdr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/bwade9090/oecdr?branch=main)
+[![lint](https://github.com/bwade9090/oecdr/actions/workflows/lint.yaml/badge.svg)](https://github.com/bwade9090/oecdr/actions/workflows/lint.yaml)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
